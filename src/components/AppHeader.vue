@@ -39,8 +39,7 @@ export default {
       this.modalVisibility = !this.modalVisibility;
     },
     isMozilla() {
-      console.log(window.navigator.userAgent.includes('Mozilla'));
-      return window.navigator.userAgent.includes('Mozilla');
+      return window.navigator.userAgent.includes('Firefox');
     }
   }
 }
