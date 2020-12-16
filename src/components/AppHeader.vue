@@ -6,12 +6,13 @@
           <img src="../assets/logo.svg" alt="logo">
         </div>
         <ul>
-          <nav-button @click="modalVisibility=!modalVisibility">Kontacts</nav-button>
+          <nav-button @click="toggleModal">Kontacts</nav-button>
         </ul>
       </nav>
     </div>
   </header>
-  <div v-if="modalVisibility" class="modal" @click="modalVisibility=!modalVisibility">
+  <div v-if="modalVisibility" class="modal" :class="{'background-black': mozilla}"
+       @click="modalVisibility=!modalVisibility">
     <div class="modal-card">
       <p>Координаты для организаторов концертов:</p>
       <p>+7-953-748-91-32</p>
@@ -28,12 +29,18 @@ export default {
   components: {NavButton},
   data() {
     return {
-      modalVisibility: false
+      modalVisibility: false,
+      mozilla: false
     }
   },
   methods: {
-    showModal() {
-      this.$emit('show-modal');
+    toggleModal() {
+      this.mozilla = this.isMozilla() ? true : false;
+      this.modalVisibility = !this.modalVisibility;
+    },
+    isMozilla() {
+      console.log(window.navigator.userAgent.includes('Mozilla'));
+      return window.navigator.userAgent.includes('Mozilla');
     }
   }
 }
@@ -85,6 +92,10 @@ ul {
   justify-content: center;
   align-items: center;
   z-index: 10;
+}
+
+.background-black {
+  background-color: #000;
 }
 
 .modal-card {
