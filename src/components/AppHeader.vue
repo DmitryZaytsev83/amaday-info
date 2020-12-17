@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     toggleModal() {
-      this.mozilla = this.isMozilla() ? true : false;
+      this.mozilla = this.isMozilla();
       this.modalVisibility = !this.modalVisibility;
     },
     isMozilla() {
